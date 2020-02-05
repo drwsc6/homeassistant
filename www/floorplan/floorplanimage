@@ -1,0 +1,426 @@
+elements:
+  - entity: sensor.brown_can
+    hold_action: none
+    state_image:
+      '1': /local/floorplan/brown_can.png
+      '2': /local/floorplan/transparentsquarelg.png
+    style:
+      left: 50%
+      top: 50%
+      width: 100%
+    tap_action: none
+    type: image
+  - entity: light.kitchen_light
+    hold_action: none
+    state_image:
+      'off': /local/floorplan/transparentsquarelg.png
+      'on': /local/floorplan/kitchenon.png
+    style:
+      left: 50%
+      top: 50%
+      width: 100%
+    tap_action: none
+    type: image
+  - entity: light.office_light
+    hold_action: none
+    state_image:
+      'off': /local/floorplan/transparentsquarelg.png
+      'on': /local/floorplan/officeon.png
+    style:
+      left: 50%
+      top: 50%
+      width: 100%
+    tap_action: none
+    type: image
+  - entity: light.garage_light
+    hold_action: none
+    state_image:
+      'off': /local/floorplan/transparentsquarelg.png
+      'on': /local/floorplan/garageon.png
+    style:
+      left: 50%
+      top: 50%
+      width: 100%
+    tap_action: none
+    type: image
+  - entity: light.workshop_light
+    hold_action: none
+    state_image:
+      'off': /local/floorplan/transparentsquarelg.png
+      'on': /local/floorplan/workshopon.png
+    style:
+      left: 50%
+      top: 50%
+      width: 100%
+    tap_action: none
+    type: image
+  - entity: group.diningroomlights
+    hold_action: none
+    state_image:
+      'off': /local/floorplan/transparentsquarelg.png
+      'on': /local/floorplan/diningroomon.png
+    style:
+      left: 50%
+      top: 50%
+      width: 100%
+    tap_action: none
+    type: image
+  - aspect_ratio: 50%
+    camera_image: camera.front_door
+    entity: camera.front_door
+    state_image:
+      'off': 'http://192.168.1.5:8082'
+      'on': 'http://192.168.1.5:8082'
+    style:
+      left: 92%
+      top: 8%
+      width: 15%
+    type: image
+  - aspect_ratio: 50%
+    camera_image: camera.side_driveway
+    entity: camera.side_driveway
+    state_image:
+      'off': 'http://192.168.1.5:8081'
+      'on': 'http://192.168.1.5:8081'
+    style:
+      left: 92%
+      top: 23%
+      width: 15%
+    type: image
+  - entity: binary_sensor.kitchen_pir
+    state_image:
+      'off': /local/floorplan/transparentsquarelg.png
+      'on': /local/floorplan/yoda.png
+    style:
+      left: 48.12%
+      top: 73.33%
+      transform: rotate(12deg)
+      width: 4%
+    type: image
+  - entity: binary_sensor.office_pir
+    state_image:
+      'off': /local/floorplan/transparentsquarelg.png
+      'on': /local/floorplan/mikeinoffice.png
+    style:
+      left: 60.28%
+      top: 78.87%
+      width: 6%
+    type: image
+  - entity: binary_sensor.master_bedroom_pir
+    hold_action: none
+    state_image:
+      'off': /local/floorplan/transparentsquarelg.png
+      'on': /local/floorplan/thenoid.png
+    style:
+      left: 59%
+      top: 15.3%
+      transform: rotate(13deg)
+      width: 2%
+    tap_action: more-info
+    type: image
+  - entity: binary_sensor.samanthas_pir
+    hold_action: none
+    state_image:
+      'off': /local/floorplan/transparentsquarelg.png
+      'on': /local/floorplan/beenieboo.png
+    style:
+      left: 36%
+      top: 17.38%
+      width: 4%
+    tap_action: none
+    type: image
+  - entity: binary_sensor.julies_pir
+    hold_action: none
+    state_image:
+      'off': /local/floorplan/transparentsquarelg.png
+      'on': /local/floorplan/thenoid.png
+    style:
+      left: 47.70%
+      top: 12.03%
+      width: 2%
+    tap_action: none
+    type: image
+  - entity: binary_sensor.hallway_pir
+    hold_action: none
+    state_image:
+      'off': /local/floorplan/transparentsquarelg.png
+      'on': /local/floorplan/shark.png
+    style:
+      left: 74.2%
+      top: 14.72%
+      width: 6%
+    tap_action: none
+    type: image
+  - entity: binary_sensor.lil_bee_occupancy
+    hold_action: none
+    state_image:
+      'off': /local/floorplan/transparentsquarelg.png
+      'on': /local/floorplan/thenoid.png
+    style:
+      left: 46.66%
+      top: 41.75%
+      width: 2%
+    tap_action: none
+    type: image
+  - entity: binary_sensor.workshop_pir
+    hold_action: none
+    state_image:
+      'off': /local/floorplan/transparentsquarelg.png
+      'on': /local/floorplan/mikeinbathroom.png
+    style:
+      left: 85%
+      top: 52.87%
+      transform: rotate(-10deg)
+      width: 3.5%
+    tap_action: none
+    type: image
+  - entity: binary_sensor.garage_pir
+    hold_action: none
+    state_image:
+      'off': /local/floorplan/transparentsquarelg.png
+      'on': /local/floorplan/yoda.png
+    style:
+      left: 72.39%
+      top: 56.20%
+      transform: rotate(13deg)
+      width: 3.5%
+    tap_action: none
+    type: image
+  - entity: light.kitchen_light
+    image: /local/floorplan/transparent_light_bulb.png
+    style:
+      left: 47.6%
+      top: 76.8%
+    tap_action:
+      action: toggle
+    type: image
+  - entity: light.office_light
+    image: /local/floorplan/transparent_light_bulb.png
+    style:
+      left: 61.5%
+      top: 75.41%
+    tap_action:
+      action: toggle
+    type: image
+  - entity: light.master_bedroom_light
+    image: /local/floorplan/transparent_light_bulb.png
+    style:
+      left: 56.5%
+      top: 14%
+    tap_action:
+      action: toggle
+    type: image
+  - entity: light.julies_light
+    image: /local/floorplan/transparent_light_bulb.png
+    style:
+      left: 47.46%
+      top: 15%
+    tap_action:
+      action: toggle
+    type: image
+  - entity: light.sams_light
+    image: /local/floorplan/transparent_light_bulb.png
+    style:
+      left: 35.68%
+      top: 16.83%
+    tap_action:
+      action: toggle
+    type: image
+  - entity: light.hallway_light
+    image: /local/floorplan/transparent_light_bulb.png
+    style:
+      left: 37.77%
+      top: 25.16%
+    tap_action:
+      action: toggle
+    type: image
+  - entity: light.workshop_light
+    image: /local/floorplan/transparent_light_bulb.png
+    style:
+      left: 85.62%
+      top: 50.88%
+    tap_action:
+      action: toggle
+    type: image
+  - entity: light.garage_light
+    image: /local/floorplan/transparent_light_bulb.png
+    style:
+      left: 75.45%
+      top: 65.16%
+    tap_action:
+      action: toggle
+    type: image
+  - entity: group.diningroomlight2
+    image: /local/floorplan/transparent_light_bulb.png
+    style:
+      left: 46.37%
+      top: 59.44%
+    tap_action:
+      action: toggle
+    type: image
+  - entity: group.diningroomlight1
+    image: /local/floorplan/transparent_light_bulb.png
+    style:
+      left: 50.43%
+      top: 58.33%
+    tap_action:
+      action: toggle
+    type: image
+  - entity: sensor.kitchen_temperature
+    style:
+      border-radius: 75%
+      color: '#87CEEB'
+      font-size: 14px
+      font-weight: bold
+      left: 43%
+      text-align: center
+      top: 71%
+      transform: rotate(-4deg)
+    type: state-label
+  - entity: sensor.office_temperature
+    style:
+      border-radius: 100%
+      color: white
+      font-size: 13px
+      font-weight: bold
+      left: 62%
+      text-align: center
+      top: 67.5%
+      transform: rotate(32deg)
+    type: state-label
+  - entity: sensor.master_bedroom_temperature
+    style:
+      boarder-radius: 75%
+      color: '#87CEEB'
+      font-size: 14px
+      font-weight: bold
+      left: 53.95%
+      text-align: center
+      top: 5.5%
+      transform: rotate(-10deg)
+    type: state-label
+  - entity: sensor.julies_bedroom_temperature
+    style:
+      border-radius: 75%
+      color: '#87CEEB'
+      font-size: 14px
+      font-weight: bold
+      left: 41.92%
+      text-align: center
+      top: 9.25%
+      transform: rotate(-10deg)
+    type: state-label
+  - entity: sensor.samanthas_bedroom_temperature
+    style:
+      border-radius: 75%
+      color: '#87CEEB'
+      font-size: 14px
+      font-weight: bold
+      left: 34.42%
+      text-align: center
+      top: 11.94%
+      transform: rotate(-10deg)
+    type: state-label
+  - entity: sensor.hallway_temperature
+    style:
+      border-radius: 75%
+      color: '#87CEEB'
+      font-size: 14px
+      font-weight: bold
+      left: 41.77%
+      text-align: center
+      top: 20.83%
+      transform: rotate(-10deg)
+    type: state-label
+  - entity: sensor.lil_bee_temperature
+    style:
+      color: '#87CEEB'
+      font-size: 14px
+      font-weight: bold
+      left: 43.48%
+      text-align: center
+      top: 31.48%
+      transform: rotate(-10deg)
+    type: state-label
+  - entity: sensor.workshop_temperature
+    style:
+      border-radius: 100%
+      color: '#87CEEB'
+      font-size: 14px
+      font-weight: bold
+      left: 82.08%
+      text-align: center
+      top: 42.22%
+      transform: rotate(-10deg)
+    type: state-label
+  - entity: sensor.garage_temperature
+    style:
+      border-radius: 100%
+      color: '#87CEEB'
+      font-size: 14px
+      font-weight: bold
+      left: 79%
+      text-align: center
+      top: 49.72%
+      transform: rotate(70deg)
+    type: state-label
+  - entity: weather.dark_sky
+    style:
+      border-radius: 75%
+      color: '#87CEEB'
+      font-size: 15px
+      font-weight: bold
+      left: 10.36%
+      text-align: center
+      top: 56.38%
+      transform: rotate(0deg)
+    type: state-label
+  - entity: binary_sensor.front_door
+    prefix: 'Front Door:'
+    style:
+      border-radius: 75%
+      color: red
+      font-size: 8px
+      font-weight: bold
+      left: 8.36%
+      text-align: center
+      top: 50.38%
+      transform: rotate(0deg)
+    type: state-label
+image: /local/floorplan/lightsoff.png
+type: picture-elements
+
+elements:
+  - entity: sensor.brown_can
+    hold_action: none
+    state_image:
+      '1': /local/floorplan/brown_can.png
+      '2': /local/floorplan/transparentsquarelg.png
+    style:
+      left: 50%
+      top: 50%
+      width: 100%
+    tap_action: none
+    type: image
+  - entity: sensor.blue_can
+    hold_action: none
+    state_image:
+      '1': /local/floorplan/blue_can.png
+      '2': /local/floorplan/transparentsquarelg.png
+    style:
+      left: 50%
+      top: 50%
+      width: 100%
+    tap_action: none
+    type: image
+  - entity: sensor.green_can
+    hold_action: none
+    state_image:
+      '1': /local/floorplan/green_can.png
+      '2': /local/floorplan/transparentsquarelg.png
+    style:
+      left: 50%
+      top: 50%
+      width: 100%
+    tap_action: none
+    type: image

@@ -1,0 +1,151 @@
+
+- platform: systemmonitor
+  resources:
+    - type: disk_free
+      arg: /
+    - type: disk_use_percent
+      arg: /
+    - type: memory_free
+    - type: process
+    - type: last_boot
+    - type: processor_use
+    - type: load_1m
+    - type: network_in
+      arg: enp2s0
+    - type: network_out
+      arg: enp2s0
+
+- platform: time_date
+  display_options:
+    - "time_date"
+    - "beat"
+
+#- platform: min_max
+#  name: "House Average Temperature"
+#  type: "mean"
+#  round_digits: 2
+#  entity_ids:
+#    - sensor.kitchen_temperature
+#    - sensor.office_temperature
+#    - sensor.livingroom_temperature
+#    - sensor.master_bedroom_temperature
+#    - sensor.echobee_temperature
+
+
+
+- platform: min_max
+  name: average_temp
+  type: mean
+  entity_ids:
+    - sensor.kitchen_temperature
+    - sensor.lil_bee_temperature
+    - sensor.office_temperature
+    - sensor.echobee_temperature
+    - sensor.hallway_temperature
+    - sensor.samanthas_bedroom_temperature
+    - sensor.julies_bedroom_temperature
+    - sensor.master_bedroom_temperature
+
+- platform: min_max
+  name: east_temp
+  type: mean
+  entity_ids:
+    - sensor.kitchen_temperature
+    - sensor.lil_bee_temperature
+    - sensor.office_temperature
+
+- platform: min_max
+  name: west_temp
+  type: mean
+  entity_ids:
+    - sensor.echobee_temperature
+    - sensor.hallway_temperature
+    - sensor.samanthas_bedroom_temperature
+    - sensor.julies_bedroom_temperature
+    - sensor.master_bedroom_temperature
+
+- platform: template
+  sensors:
+    garage_door_state:
+      value_template: '{% if states.binary_sensor.garage_door_sensor %}
+        {% if states.binary_sensor.garage_door_sensor.state == "on" %}
+          1
+        {% else %}
+          0
+        {% endif %}
+        {% else %}
+          0
+        {% endif %}'
+      friendly_name: 'Garage Door'
+      
+- platform: template
+  sensors:
+    workshop_door_state:
+      value_template: '{% if states.binary_sensor.workshop_door_sensor %}
+        {% if states.binary_sensor.workshop_door_sensor.state == "on" %}
+          1
+        {% else %}
+          0
+        {% endif %}
+        {% else %}
+          0
+        {% endif %}'
+      friendly_name: 'Workshop Door'
+- platform: template
+  sensors:
+    green_can_template:
+      value_template: >-
+        {% if is_state('sensor.green_can','today') %}1
+        {% elif is_state('sensor.green_can','tomorrow') %}2
+        {% else %}0
+        {% endif %}
+- platform: template
+  sensors:
+    brown_can_template:
+      value_template: >-
+        {% if is_state('sensor.brown_can','today') %}1
+        {% elif is_state('sensor.brown_can','tomorrow') %}2
+        {% else %}0
+        {% endif %}
+- platform: template
+  sensors:
+    blue_can_template:
+      value_template: >-
+        {% if is_state('sensor.blue_can','today') %}1
+        {% elif is_state('sensor.blue_can','tomorrow') %}2
+        {% else %}0
+        {% endif %}
+- platform: template
+  sensors:
+    doors_template:
+      value_template: >-
+        {% if is_state('group.doors','off') %}closed
+        {% else %}not closed
+        {% endif %}
+- platform: template
+  sensors:
+    windows_template:
+      value_template: >-
+        {% if is_state('group.windows','off') %}closed
+        {% else %}not closed
+        {% endif %}
+- platform: template
+  sensors:
+    east_ac_heat_setpoint_template:
+      value_template: >-
+        {{ state_attr('climate.east_ac_heat', 'temperature') }}
+- platform: template
+  sensors:
+    west_ac_heat_setpoint_template:
+      value_template: >-
+        {{ state_attr('climate.west_ac_heat', 'temperature') }}
+- platform: template
+  sensors:
+   dark_sky_temp_template:
+     value_template: >-
+       {{ state_attr('weather.dark_sky', 'temperature') }}
+- platform: template
+  sensors:
+    dark_sky_forecast_template:
+      value_template: >-
+        {{ state_attr('weather.dark_sky_forecast', 'datetime') }}

@@ -1,0 +1,47 @@
+
+garage_door:
+  name: Garage is open
+  done_message: Garage is closed
+  entity_id: binary_sensor.garage_door_sensor
+  state: 'on'
+  repeat: 15
+  can_acknowledge: True
+  skip_first: false
+  notifiers:
+    - mike
+
+
+workshop_door:
+  name: Workshop is open
+  done_message: Workshop is closed
+  entity_id: binary_sensor.workshop_door_sensor
+  state: 'on'
+  repeat: 15
+  can_acknowledge: True
+  skip_first: false
+  notifiers:
+    - mike
+    
+door_open:
+  name: A Door is open
+  done_message: All doors are closed
+  entity_id: automation.door_open
+  state: 'on'
+  repeat: 15
+  can_acknowledge: True
+  skip_first: false
+  notifiers:
+    - mike
+    - kristina
+    
+window_open:
+  name:  A window is open
+  done_message: All windows are closed
+  entity_id: automation.window_open
+  state: 'on'
+  repeat: 15
+  can_acknowledge: True
+  skip_first: false
+  notifiers:
+    - mike
+    - kristina

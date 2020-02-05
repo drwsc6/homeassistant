@@ -1,0 +1,106 @@
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+# http:
+#   base_url: example.duckdns.org:8123
+
+# Text to speech
+tts:
+  - platform: google_translate
+api:
+http:
+  ssl_certificate: /ssl/fullchain.pem
+  ssl_key: /ssl/privkey.pem
+  base_url: casadedenver.com
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+binary_sensor: !include binary_sensors.yaml
+climate: !include climate.yaml
+sensor: !include sensors.yaml
+alarm_control_panel: !include alarm.yaml
+device_tracker: !include device_trackers.yaml
+camera: !include camera.yaml
+zone: !include zones.yaml
+system_health:
+speedtestdotnet:
+  scan_interval:
+    hours: 2
+  monitored_conditions:
+    - ping
+    - download
+    - upload
+mobile_app:
+stream:
+panel_custom:
+  - name: floorplan
+    sidebar_title: Floorplan
+    sidebar_icon: mdi:home
+    url_path: floorplan
+    config: !include floorplan.yaml
+notify:
+  - platform: html5
+    name: chrome
+    vapid_pub_key: BDs0z9Y72Go20HYVN6RzJkkU8bGvmMrzfhpYPcFI6xU9L0SF-_oUYUoo02IetrMqmen344G0-nxasVu5Dqh8vNE
+    vapid_prv_key: x0gBCUMSbgnb8PfT2OyhTC4G2Gug7yLLofUGDlAflmI
+    vapid_email: drwsc6@gmail.com
+  - platform: group
+    name: mike
+    services:
+      - service: chrome
+        data:
+          target: 'mike'
+  - platform: group
+    name: kristina
+    services:
+      - service: chrome
+        data:
+          target: 'kristina'
+alert: !include alerts.yaml
+alexa:
+  smart_home:
+    endpoint: https://api.amazonalexa.com/v3/events
+    client_id: amzn1.application-oa2-client.f3ed7e97f2fd4df7badcc745eb2a0b37
+    client_secret: 4cd11039250460ab42e5bd93fee11dceaea811360db9b4a168d58465d87c0e40
+ecobee:
+  api_key: !secret ecobee
+updater:
+  include_used_components: true
+conversation:
+sun:  
+media_player:
+  - platform: kodi
+    host: 192.168.1.112
+    name: livingroompi
+    username: mike
+    password: 6Budlights
+  - platform: kodi
+    host: 192.168.1.113
+    name: officepi
+    username: mike
+    password: 6Budlights
+  - platform: yamaha
+    host: 192.168.1.11
+    name: CasadeRock
+  - platform: braviatv
+    host: 192.168.1.110
+weather:
+  - platform: darksky
+    api_key: 94e1fbbfed02a00709d08f9f0b791ada
+influxdb:
+  host: a0d7b954-influxdb
+  port: 8086
+  database: homeassistant
+  username: homeassistant
+  password: 2014Fordf250
+  max_retries: 3
+  default_measurement: state
+#breaking_changes:
+#browser_mod:
+#  devices:
+#    a5faceba-c4b5d279:
+#      name: Mikes Phone

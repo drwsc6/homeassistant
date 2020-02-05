@@ -1,0 +1,58 @@
+  - platform: generic_thermostat
+    name: east_ac_heat
+    heater: switch.east_heating
+    target_sensor: sensor.east_temp
+    min_temp: 40
+    max_temp: 90
+    target_temp: 65
+    away_temp: 63
+    cold_tolerance: 0.5
+    hot_tolerance: 0.5
+    min_cycle_duration:
+      minutes: 2
+    initial_hvac_mode: "heat"
+
+  - platform: generic_thermostat
+    name: west_ac_heat
+    heater: switch.west_heating
+    target_sensor: sensor.west_temp
+    min_temp: 40
+    max_temp: 90
+    ac_mode: false
+    target_temp: 65
+    away_temp: 63
+    cold_tolerance: 0.5
+    hot_tolerance: 0.5
+    min_cycle_duration:
+      minutes: 2
+    initial_hvac_mode: "heat"
+
+  - platform: generic_thermostat
+    name: east_ac_cool
+    ac_mode: true
+    heater: switch.east_cooling
+    target_sensor: sensor.east_temp
+    min_temp: 40
+    max_temp: 90
+    target_temp: 80
+    away_temp: 85
+    cold_tolerance: 0.5
+    hot_tolerance: 0.5
+    min_cycle_duration:
+      minutes: 2
+    initial_hvac_mode: "off"
+    
+  - platform: generic_thermostat
+    name: west_ac_cool
+    ac_mode: true
+    heater: switch.west_cooling
+    target_sensor: sensor.west_temp
+    min_temp: 40
+    max_temp: 90
+    target_temp: 80
+    away_temp: 85
+    cold_tolerance: 0.5
+    hot_tolerance: 0.5
+    min_cycle_duration:
+      minutes: 2
+    initial_hvac_mode: "off"

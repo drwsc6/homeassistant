@@ -1,0 +1,596 @@
+- id: c39bfb9c114b4ca39804531689406cf4
+  alias: turn on kitchen lights
+  trigger:
+  - entity_id: binary_sensor.kitchen_pir
+    platform: state
+    to: 'on'
+  condition:
+  - below: '25'
+    condition: numeric_state
+    entity_id: sensor.kitchen_light_sensor
+  - after: 04:00:00
+    before: 02:00:00
+    condition: time
+  action:
+  - entity_id: light.kitchen_light
+    service: light.turn_on
+- id: 684a753bf84f4fb09c8315a55e8b4012
+  alias: turn off kitchen lights 5
+  trigger:
+  - entity_id: binary_sensor.kitchen_pir
+    for: 00:05:00
+    platform: state
+    to: 'off'
+  condition:
+  - after: 07:00:00
+    before: '22:00:00'
+    condition: time
+  action:
+  - entity_id: light.kitchen_light
+    service: light.turn_off
+- id: c393717969d54070873b20d3f5673b0e
+  alias: turn off kitchen lights 2
+  trigger:
+    platform: state
+    entity_id: binary_sensor.kitchen_pir
+    to: 'off'
+    for: 00:02:00
+  condition:
+    condition: time
+    after: '22:00:00'
+    before: 07:00:00
+  action:
+    service: light.turn_off
+    entity_id: light.kitchen_light
+- id: '1554952593544'
+  alias: turn on kitchen fan
+  trigger:
+  - above: '79'
+    entity_id: sensor.kitchen_temperature
+    platform: numeric_state
+  condition:
+  - condition: state
+    entity_id: binary_sensor.kitchen_pir
+    state: 'on'
+  action:
+  - data:
+      entity_id: fan.kitchen_fan
+    service: fan.turn_on
+- id: '1554952825846'
+  alias: turn off kitchen fan
+  trigger:
+  - below: '78'
+    entity_id: sensor.kitchen_temperature
+    for: 00:05:00
+    platform: numeric_state
+  action:
+  - data:
+      entity_id: fan.kitchen_fan
+    service: fan.turn_off
+- id: 7a56a7552bd8455ba554a698a7b3fb8a
+  alias: turn on office lights
+  trigger:
+  - entity_id: binary_sensor.office_pir
+    platform: state
+    to: 'on'
+  condition:
+  - below: '25'
+    condition: numeric_state
+    entity_id: sensor.office_light_sensor
+  action:
+  - data:
+      brightness_pct: 100
+      entity_id:
+      - light.office_light
+      - light.office_cabinet_light
+    service: light.turn_on
+- id: 45983797dbd244d2b7735eaf1ebbeada
+  alias: turn off office lights
+  trigger:
+  - entity_id: binary_sensor.office_pir
+    for: 00:10:00
+    platform: state
+    to: 'off'
+  action:
+  - data:
+      entity_id:
+      - light.office_light
+      - light.office_cabinet_light
+    service: light.turn_off
+- id: 47491f3035ae4799b9bf40b6a0614f38
+  alias: turn on office fan
+  trigger:
+  - above: '79'
+    entity_id: sensor.office_temperature
+    platform: numeric_state
+  action:
+  - data:
+      entity_id: fan.office_fan
+    service: fan.turn_on
+- id: 47491f3035ae4799b9bf40b6a0614f39
+  alias: turn off office fan
+  trigger:
+  - below: '78'
+    entity_id: sensor.office_temperature
+    platform: numeric_state
+  action:
+  - data:
+      entity_id: fan.office_fan
+    service: fan.turn_off
+- id: 4475bb1c23c14fc180f5868e56152d8a
+  alias: turn on garage lights
+  trigger:
+  - entity_id: binary_sensor.garage_pir
+    platform: state
+    to: 'on'
+  - entity_id: binary_sensor.garage_patio_door
+    platform: state
+    to: 'on'
+  action:
+  - data:
+      entity_id: light.garage_light
+    service: light.turn_on
+- id: f7a557da47ad4a518e5ddf90950ec49d
+  alias: turn off garage lights
+  trigger:
+  - entity_id: binary_sensor.garage_pir
+    for: 00:10:00
+    platform: state
+    to: 'off'
+  action:
+  - data:
+      entity_id: light.garage_light
+    service: light.turn_off
+- id: 9607f74dfa62437e98731b54ef1b38b0
+  alias: turn on workshop lights
+  trigger:
+    platform: state
+    entity_id: binary_sensor.workshop_pir
+    to: 'on'
+  action:
+  - data:
+      entity_id: light.workshop_light
+    service: light.turn_on
+- id: 5e5f2a8ce923415d86a45acf8e982f5f
+  alias: turn off workshop lights
+  trigger:
+    platform: state
+    entity_id: binary_sensor.workshop_pir
+    to: 'off'
+    for: 00:10:00
+  action:
+  - data:
+      entity_id: light.workshop_light
+    service: light.turn_off
+- id: 9bd57a8bcffb40068c8e592aab87fc14
+  alias: turn off workshop light 20 minutes after trigger
+  trigger:
+  - entity_id: binary_sensor.hallway_pir
+    for: 00:20:00
+    platform: state
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: binary_sensor.workshop_pir
+    state: 'off'
+  action:
+  - entity_id: light.workshop_light
+    service: light.turn_off
+- id: '1553494996267'
+  alias: turn off garage light if left on
+  trigger:
+  - minutes: '20'
+    platform: time_pattern
+  condition:
+  - condition: state
+    entity_id: binary_sensor.garage_pir
+    state: 'off'
+  action:
+  - data:
+      entity_id: light.garage_light
+    service: light.turn_off
+- id: 134426975a844faeb2116a88c610dbb6
+  alias: turn off dining room lights ambient
+  trigger:
+    platform: sun
+    event: sunrise
+  action:
+  - data:
+      entity_id: group.diningroomambiance
+    service: homeassistant.turn_off
+- id: 4b3a88fac8f142588fb6d37184fe9328
+  alias: turn on master bedroom lights
+  trigger:
+  - entity_id: binary_sensor.master_bedroom_pir
+    platform: state
+    to: 'on'
+  condition:
+  - below: '40'
+    condition: numeric_state
+    entity_id: sensor.master_bedroom_light_sensor
+  - after: '16:00:00'
+    before: '21:00:00'
+    condition: time
+  action:
+  - data:
+      entity_id: light.master_bedroom_light
+    service: light.turn_on
+- id: 9c72eb762b234ce784e981f7e193c4c2
+  alias: turn off master bedroom lights
+  trigger:
+    platform: state
+    entity_id: binary_sensor.master_bedroom_pir
+    to: 'off'
+    for: 00:02:00
+  action:
+  - data:
+      entity_id: light.master_bedroom_light
+    service: light.turn_off
+- id: '1555039386800'
+  alias: turn on hallway light after 8pm
+  trigger:
+  - entity_id: binary_sensor.hallway_pir
+    platform: state
+    to: 'on'
+  condition:
+  - after: '20:00:00'
+    before: '22:00:00'
+    condition: time
+  action:
+  - data:
+      brightness_pct: 25
+      entity_id: light.hallway_light
+    service: light.turn_on
+- id: '1555039386923'
+  alias: turn on hallway light after 5pm
+  trigger:
+  - entity_id: binary_sensor.hallway_pir
+    platform: state
+    to: 'on'
+  condition:
+  - after: '17:00:00'
+    before: '20:00:00'
+    condition: time
+  action:
+  - data:
+      brightness_pct: 50
+      entity_id: light.hallway_light
+    service: light.turn_on
+- id: '1555039386799'
+  alias: turn off hallway lights
+  trigger:
+  - entity_id: binary_sensor.hallway_pir
+    for: 00:01:00
+    platform: state
+    to: 'off'
+  condition:
+  - after: '17:00:00'
+    before: 05:00:00
+    condition: time
+  action:
+  - entity_id: light.hallway_light
+    service: light.turn_off
+- id: '1555039386785'
+  alias: turn off pool lights
+  trigger:
+    platform: time
+    at: 00:00:00
+  action:
+  - data:
+      entity_id: group.pool_lights
+    service: homeassistant.turn_off
+- id: 80762b6b53f64600bf8602df3b309882
+  alias: turn on workshop light when hallway triggered
+  trigger:
+  - entity_id: binary_sensor.hallway_pir
+    platform: state
+    to: 'on'
+  - entity_id: binary_sensor.front_door
+    platform: state
+    to: 'on'
+  - entity_id: binary_sensor.garage_patio_door
+    platform: state
+    to: 'on'
+  - entity_id: binary_sensor.master_bath_door
+    platform: state
+    to: 'on'
+  action:
+  - entity_id:
+    - light.workshop_light
+    service: light.turn_on
+  - delay: 00:00:02
+  - entity_id:
+    - light.workshop_light
+    service: light.turn_off
+  - delay: 00:00:02
+  - entity_id:
+    - light.workshop_light
+    service: light.turn_on
+  - delay: 00:00:02
+  - entity_id:
+    - light.workshop_light
+    service: light.turn_off
+  - delay: 00:00:02
+  - entity_id:
+    - light.workshop_light
+    service: light.turn_on
+- id: '1571899522325'
+  alias: turn off master bedroom Led lights
+  description: ''
+  trigger:
+  - at: 00:00:00
+    platform: time
+  condition: []
+  action:
+  - entity_id: light.wled59
+    service: light.turn_off
+  - entity_id: light.wled66
+    service: light.turn_off
+- id: '1571899633760'
+  alias: turn on master bedroom leds
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.master_bedroom_pir
+    platform: state
+    to: 'on'
+  condition:
+  - after: '21:30:00'
+    before: 00:00:00
+    condition: time
+  action:
+  - entity_id: light.wled59
+    service: light.turn_on
+  - entity_id: light.wled66
+    service: light.turn_on
+- id: '1574320661072'
+  alias: climate day
+  description: Set Climate to 65 at 8am
+  trigger:
+  - at: 08:00:00
+    platform: time
+  condition: []
+  action:
+  - alias: ''
+    data:
+      entity_id: climate.east_ac_heat
+      preset_mode: none
+    service: climate.set_preset_mode
+  - data:
+      entity_id: climate.west_ac_heat
+      preset_mode: none
+    service: climate.set_preset_mode
+  - data:
+      temperature: 65
+    entity_id: climate.east_ac_heat
+    service: climate.set_temperature
+  - data:
+      temperature: 65
+    entity_id: climate.west_ac_heat
+    service: climate.set_temperature
+- id: '1574585338060'
+  alias: climate away
+  description: ''
+  trigger:
+  - platform: template
+    value_template: '{% if is_state(''person.mike'', ''not_home'')and is_state(''person.kristina'',
+      ''not_home'') %}true{% endif %}'
+  condition: []
+  action:
+  - data:
+      entity_id: climate.east_ac_heat
+      preset_mode: away
+    service: climate.set_preset_mode
+  - data:
+      entity_id: climate.west_ac_heat
+      preset_mode: away
+    service: climate.set_preset_mode
+- id: '1574585338062'
+  alias: climate morning
+  description: Set temp to 67 at 6:30am
+  trigger:
+  - at: 06:30:00
+    platform: time
+  condition:
+  - condition: state
+    entity_id: person.kristina
+    state: home
+  - condition: or
+    conditions:
+    - condition: state
+      entity_id: person.mike
+      state: home
+  action:
+  - data:
+      preset_mode: none
+    entity_id: climate.east_ac_heat
+    service: climate.set_preset_mode
+  - data:
+      preset_mode: none
+    entity_id: climate.west_ac_heat
+    service: climate.set_preset_mode
+  - data:
+      temperature: 68
+    entity_id: climate.east_ac_heat
+    service: climate.set_temperature
+  - data:
+      temperature: 68
+    entity_id: climate.west_ac_heat
+    service: climate.set_temperature
+- id: '1575700454114'
+  alias: turn on hallway light after 10pm
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.hallway_pir
+    platform: state
+    to: 'on'
+  condition:
+  - after: '22:00:00'
+    before: 05:00:00
+    condition: time
+  action:
+  - data:
+      brightness_pct: 12
+      entity_id: light.hallway_light
+    service: light.turn_on
+- id: '1575704410137'
+  alias: turn off hallway light after 5am
+  description: ''
+  trigger:
+  - at: 05:00:00
+    platform: time
+  condition: []
+  action:
+  - data:
+      entity_id: light.hallway_light
+    service: light.turn_off
+- id: '1576224956185'
+  alias: turn off christmas tree light morning
+  description: ''
+  trigger:
+  - at: 08:00:00
+    platform: time
+  condition: []
+  action:
+  - data:
+      entity_id: light.christmas_tree_light
+    service: light.turn_off
+- id: '1576654226267'
+  alias: turn off christmas lights
+  description: ''
+  trigger:
+  - at: 00:00:00
+    platform: time
+  condition: []
+  action:
+  - alias: ''
+    data: {}
+    entity_id: light.christmas_tree_light
+    service: light.turn_off
+  - entity_id: light.wled_5
+    service: light.turn_off
+  - entity_id: light.underwater_pool_light
+    service: light.turn_off
+- id: '1577051886222'
+  alias: open garage door
+  description: ''
+  trigger:
+  - entity_id: device_tracker.chevrolet
+    from: not_home
+    platform: state
+    to: home
+  condition:
+  - condition: state
+    entity_id: cover.workshop_door
+    state: closed
+  action:
+  - entity_id: cover.workshop_door
+    service: cover.open_cover
+- id: '1578810589524'
+  alias: climate night
+  description: Set climate to 65 at 11pm
+  trigger:
+  - at: '23:00:00'
+    platform: time
+  condition: []
+  action:
+  - data:
+      temperature: 65
+    entity_id: climate.east_ac_heat
+    service: climate.set_temperature
+  - data:
+      temperature: 65
+    entity_id: climate.west_ac_heat
+    service: climate.set_temperature
+- id: '1579193704794'
+  alias: climate evening
+  description: Set climate to 69 in the evening
+  trigger:
+  - at: '17:00:00'
+    platform: time
+  condition:
+  - condition: state
+    entity_id: person.mike
+    state: home
+  - condition: or
+    conditions:
+    - condition: state
+      entity_id: person.kristina
+      state: home
+  action:
+  - data:
+      temperature: 69
+    entity_id: climate.west_ac_heat
+    service: climate.set_temperature
+  - data:
+      temperature: 69
+    entity_id: climate.east_ac_heat
+    service: climate.set_temperature
+- id: '1579231763688'
+  alias: climate  home
+  description: Set mode to none when anyone comes home
+  trigger:
+  - entity_id: person.kristina
+    from: not_home
+    platform: state
+    to: home
+  - entity_id: person.mike
+    from: not_home
+    platform: state
+    to: home
+  condition: []
+  action:
+  - data:
+      preset_mode: none
+    entity_id: climate.east_ac_heat
+    service: climate.set_preset_mode
+  - data:
+      preset_mode: none
+    entity_id: climate.west_ac_heat
+    service: climate.set_preset_mode
+- id: '1579817301760'
+  alias: close garage door
+  description: ''
+  trigger:
+  - entity_id: device_tracker.chevrolet
+    from: home
+    platform: state
+    to: not_home
+  condition:
+  - condition: state
+    entity_id: cover.workshop_door
+    state: open
+  action:
+  - entity_id: cover.workshop_door
+    service: cover.close_cover
+- id: '1580362532904'
+  alias: turn on bathroom light
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.bathroom_pir
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - entity_id: light.bathroom_light_1
+    service: light.turn_on
+  - entity_id: light.bathroom_light_2
+    service: light.turn_on
+  - entity_id: light.bathroom_light_ambiance
+    service: light.turn_on
+- id: '1580680956629'
+  alias: turn off bathroom light
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.bathroom_pir
+    for: 00:05:00
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - entity_id: light.bathroom_light_1
+    service: light.turn_off
+  - entity_id: light.bathroom_light_2
+    service: light.turn_off
+  - entity_id: light.bathroom_light_ambiance
+    service: light.turn_off

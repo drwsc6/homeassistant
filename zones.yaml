@@ -1,0 +1,13 @@
+  - name: Julies School
+    latitude: 35.401660
+    longitude: -119.027559
+    radius: 50
+    icon: mdi:school
+
+  - name: Moms
+    latitude: 35.217754
+    longitude: -119.392415
+    radius: 50
+    icon: mdi:house
+    
+    

@@ -1,0 +1,241 @@
+  - platform: ping
+    host: 192.168.1.1
+    name: "Router 1"
+    count: 2
+    scan_interval: 30
+  - platform: ping
+    host: 192.168.1.2
+    name: "Router 2"
+    count: 2
+    scan_interval: 30
+  - platform: ping
+    host: 192.168.1.61
+    name: "Node 1"
+    count: 2
+    scan_interval: 30
+  - platform: ping
+    host: 192.168.1.62
+    name: "Node 2"
+    count: 2
+    scan_interval: 30
+  - platform: ping
+    host: 192.168.1.110
+    name: "Sony TV"
+    count: 2
+    scan_interval: 30
+  - platform: ping
+    host: 192.168.1.56
+    name: "HVAC Node"
+    count: 2
+  - platform: ping
+    host: 192.168.1.54
+    name: "Pool Node"
+    count: 2
+    scan_interval: 30
+  - platform: ping
+    host: 192.168.1.53
+    name: "LED Node"
+    count: 2
+  - platform: ping
+    host: 192.168.1.52
+    name: "Garage Door Node"
+    count: 2
+  - platform: ping
+    host: 192.168.1.63
+    name: "Dining Room Lights Node"
+    count: 2
+  - platform: mqtt
+    state_topic: dummy/floorplan/sensor
+    name: Floorplan
+  - platform: mqtt
+    name: "Front Door"
+    state_topic: "node0/front_door"
+    payload_on: "open"
+    payload_off: "closed"
+    qos: 0
+    device_class: door
+    
+  - platform: mqtt
+    name: "Front Window"
+    state_topic: "node0/front_window"
+    payload_on: "open"
+    payload_off: "closed"
+    qos: 0
+    device_class: window
+    
+  - platform: mqtt
+    name: "West Master Bedroom Window"
+    state_topic: "node0/west_master_bedroom_window"
+    payload_on: "open"
+    payload_off: "closed"
+    qos: 0
+    device_class: window
+    
+  - platform: mqtt
+    name: "East Master Bedroom Window"
+    state_topic: "node0/east_master_bedroom_window"
+    payload_on: "open"
+    payload_off: "closed"
+    qos: 0
+    device_class: window
+    
+  - platform: mqtt
+    name: "Sams Window"
+    state_topic: "node0/sams_window"
+    payload_on: "open"
+    payload_off: "closed"
+    qos: 0
+    device_class: window
+    
+  - platform: mqtt
+    name: "Garage Patio Door"
+    state_topic: "node0/garage_patio_door"
+    payload_on: "open"
+    payload_off: "closed"
+    qos: 0
+    device_class: door
+    
+  - platform: mqtt
+    name: "Garage Window"
+    state_topic: "node0/garage_window"
+    payload_on: "open"
+    payload_off: "closed"
+    qos: 0
+    device_class: window
+    
+  - platform: mqtt
+    name: "Office Window"
+    state_topic: "node0/office_window"
+    payload_on: "open"
+    payload_off: "closed"
+    qos: 0
+    device_class: window    
+
+  - platform: mqtt
+    name: "East Kitchen Window"
+    state_topic: "node0/east_kitchen_window"
+    payload_on: "open"
+    payload_off: "closed"
+    qos: 0
+    device_class: window
+
+  - platform: mqtt
+    name: "South Kitchen Window"
+    state_topic: "node0/south_kitchen_window"
+    payload_on: "open"
+    payload_off: "closed"
+    qos: 0
+    device_class: window
+    
+  - platform: mqtt
+    name: "Nook Window"
+    state_topic: "node0/nook_window"
+    payload_on: "open"
+    payload_off: "closed"
+    qos: 0
+    device_class: window
+    
+  - platform: mqtt
+    name: "Julies Window"
+    state_topic: "node0/julies_window"
+    payload_on: "open"
+    payload_off: "closed"
+    qos: 0
+    device_class: window
+    
+  - platform: mqtt
+    name: "Front Garage Door"
+    state_topic: "node0/front_garage_door"
+    payload_on: "open"
+    payload_off: "closed"
+    qos: 0
+    device_class: door
+    
+  - platform: mqtt
+    name: "Patio Door"
+    state_topic: "node0/patio_door"
+    payload_on: "open"
+    payload_off: "closed"
+    qos: 0
+    device_class: door
+    
+  - platform: mqtt
+    name: "Master Bath Door"
+    state_topic: "node0/master_bath_door"
+    payload_on: "open"
+    payload_off: "closed"
+    qos: 0
+    device_class: door
+    
+  - platform: mqtt
+    name: "Patio Window"
+    state_topic: "node0/patio_window"
+    payload_on: "open"
+    payload_off: "closed"
+    qos: 0
+    device_class: window
+    
+  - platform: mqtt
+    name: "Front Garage Window"
+    state_topic: "node0/front_garage_window"
+    payload_on: "open"
+    payload_off: "closed"
+    qos: 0
+    device_class: window
+    
+  - platform: mqtt
+    name: "Front Bath East Window"
+    state_topic: "node0/front_bath_east_window"
+    payload_on: "open"
+    payload_off: "closed"
+    qos: 0
+    device_class: window
+    
+  - platform: mqtt
+    name: "Front Bath South Window"
+    state_topic: "node0/front_bath_south_window"
+    payload_on: "open"
+    payload_off: "closed"
+    qos: 0
+    device_class: window
+ 
+  - platform: mqtt
+    name: "Garage Door Sensor"
+    state_topic: "node0/garage_door"
+    payload_on: "open"
+    payload_off: "closed"
+    qos: 0
+    device_class: garage_door
+    
+  - platform: mqtt
+    name: "Workshop Door Sensor"
+    state_topic: "node0/workshop_door"
+    payload_on: "open"
+    payload_off: "closed"
+    qos: 0
+    device_class: garage_door
+
+  - platform: rest
+    name: "Front Porch"
+    resource: http://localhost:7999/sensors.json?sensor=motion_active
+    value_template: "{{ states.binary_sensor.front_porch.attributes['state'] }}"
+    device_class: motion 
+    
+  - platform: rest
+    name: "Side Driveway"
+    resource: http://localhost:7999/sensors.json?sensor=motion_active
+    value_template: "{{ states.binary_sensor.side_driveway.attributes['state'] }}"
+    device_class: motion
+
+  - platform: workday
+    country: US
+    province: CA
+
+#  - platform: rest
+#    name: "Camera 3 Motion"
+#    resource: http://192.168.1.73:8080/sensors.json?sense=motion_active
+#    value_template: '{{ value_json.motion_active.data[0][1][0] | round(0) }}'
+
+# curl -X POST -H "Content-Type: application/json" -d '{"entity_id": "input_boolean.motion_state_front_door"}' https://casadedenver.com/api/services/input_boolean/turn_on
+#curl -X POST -H "Content-Type: application/json" -d '{"state":"on", "attribuites": { "device_class":"motion","friendly_name":"Front Porch"}}' https://casadedenver.com/api/states/binary_sensor.front_porch
+# curl -X POST -H "Content-Type: application/json" -d '{"entity_id": "input_boolean.motion_state_front_door"}' https://casadedenver.com/api/services/input_boolean/turn_off

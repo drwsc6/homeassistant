@@ -1,0 +1,222 @@
+
+kitchen_auto:
+  name: Kitchen Automation
+  entities:
+    - automation.turn_on_kitchen_lights
+    - automation.turn_on_kitchen_fan
+    - automation.turn_off_kitchen_lights
+    - automation.turn_off_kitchen_fan
+
+office_auto:
+  name: Office Automation
+  entities:
+    - automation.turn_on_office_fan
+    - automation.turn_on_office_lights
+    - automation.turn_off_office_lights
+    - automation.turn_off_office_fan
+
+master_bedroom_auto:
+  name: Master Bedroom Automation
+  entities:
+    - automation.turn_on_master_bedroom_fan
+    - automation.turn_on_master_bedroom_lights
+    - automation.turn_off_master_bedroom_lights
+    - automation.turn_off_master_bedroom_fan
+
+garage_auto:
+  name: Garage Automation
+  entities:
+    - automation.turn_on_garage_lights
+    - automation.turn_off_garage_lights
+
+workshop_auto:
+  name: Workshop Automation
+  entities:
+    - automation.turn_on_workshop_lights
+    - automation.turn_off_workshop_lights
+
+dining_room_auto:
+  name: Bathroom Automation
+  entities:
+#    - automation.turn_on_dining_room_fan
+    - automation.turn_on_bathroom_lights
+    - automation.turn_off_bathroom_lights
+#    - automation.turn_off_dining_room_fan
+    - automation.turn_on_bathroom_lights_ambient
+
+master_bedroom:
+  name: Master Bedroom
+  entities:
+    - sensor.master_bedroom_light_sensor
+    - binary_sensor.master_bedroom_pir
+    - sensor.master_bedroom_temperature
+    - switch.master_bedroom_light_switch
+    
+    
+occupied_rooms:
+  name: Occupied
+  entities:
+    - binary_sensor.hallway_pir
+    - binary_sensor.lil_bee_occupancy
+    - binary_sensor.ecobee_occupancy
+    - binary_sensor.kitchen_pir
+    - binary_sensor.office_pir
+    - binary_sensor.camera_3_motion_active
+    - binary_sensor.garage_pir
+    - binary_sensor.workshop_pir
+    - binary_sensor.master_bedroom_pir
+    - binary_sensor.samanthas_pir
+    - binary_sensor.julies_pir
+
+east_rooms_pir:
+  name: East Rooms Pir
+  entities:
+    - binary_sensor.lil_bee_occupancy
+    - binary_sensor.kitchen_pir
+    - binary_sensor.office_pir
+
+west_rooms_pir:
+  name: West Rooms Pir
+  entities:
+    - binary_sensor.hallway_pir
+    - binary_sensor.ecobee_occupancy
+    - binary_sensor.master_bedroom_pir
+    - binary_sensor.samanthas_pir
+    - binary_sensor.julies_pir
+
+    
+lights:
+  name: Lights
+  entities:
+    - light.office_light
+    - light.office_cabinet_light
+    - light.kitchen_light
+    - light.workshop_light
+    - light.garage_light
+    - light.master_bedroom_light
+    - light.hallway_light
+    - light.master_bedroom_led
+    
+    
+pool_lights:
+  name: Pool Lights
+  entities:
+    - light.underwater_pool_light
+    - light.edge_pool_light
+
+holiday_lights:
+  name: Holiday Lights
+  entities:
+    - light.underwater_pool_light
+    - light.christmas_tree_light
+    - light.wled_5
+office:
+  name: Office
+  entities:
+    - light.office_light
+    - fan.office_fan
+    - binary_sensor.office_pir
+    - sensor.office_temperature
+    - sensor.office_humidity
+environment:
+  name: Environment
+  entities:
+    - climate.ecobee
+    - climate.east_ac_cool
+    - climate.east_ac_heat
+    - climate.weat_ac_cool
+    - climate.west_ac_heat
+    - sensor.dark_sky_temperature
+    - weather.ecobee
+    - sensor.ecobee_temperature
+    - sensor.ecobee_humidity
+    - sensor.lil_bee_temperature
+    - sensor.kitchen_temperature
+    - sensor.master_bedroom_temperature
+    - sensor.office_temperature
+    - sensor.samanthas_bedroom_temperature
+    - sensor.julies_bedroom_temperature
+    - sensor.garage_temperature
+    - sensor.garage_humidity
+    - sensor.workshop_temperature
+    - sensor.workshop_humidity
+    - sensor.kitchen_humidity
+    - sensor.master_bedroom_humidity
+    - sensor.office_humidity
+    - sensor.samanthas_bedroom_humidity
+    - sensor.julies_bedroom_humidity
+    - sensor.office_light_sensor
+    - sensor.master_bedroom_light_sensor
+    - fan.office_fan
+    - fan.kitchen_fan
+    - fan.master_bedroom_fan
+doors:
+  name: Doors
+  entities:
+    - binary_sensor.front_door
+    - binary_sensor.garage_patio_door
+    - binary_sensor.front_garage_door
+    - binary_sensor.patio_door
+    - binary_sensor.master_bath_door
+windows:
+  name: Windows
+  entities:
+    - binary_sensor.front_window
+    - binary_sensor.garage_window
+    - binary_sensor.west_master_bedroom_window
+    - binary_sensor.east_master_bedroom_window
+    - binary_sensor.sams_window
+    - binary_sensor.garage_window
+    - binary_sensor.office_window
+    - binary_sensor.east_kitchen_window
+    - binary_sensor.south_kitchen_window
+    - binary_sensor.front_bath_east_window
+ #   - binary_sensor.front_bath_south_window
+    - binary_sensor.nook_window
+    - binary_sensor.julies_window
+    - binary_sensor.patio_window
+    - binary_sensor.front_garage_window
+garage_doors:
+  name: Garage Doors
+  entities:  
+    - cover.garage_door
+    - cover.workshop_door
+media:
+  name: Media Players
+  entities:
+    -  media_player.casaderock_zone_2
+    -  media_player.casaderock
+
+cameras:
+  name: Cameras
+  entities:
+    - camera.front_door
+    - camera.side_driveway
+    
+bathroomlights:
+  name: Bathroom Lights
+  entities:
+    - light.bathroom_light_1
+    - light.bathroom_light_2
+    - light.bathroom_light_3
+    - light.bathroom_light_4
+    - light.bathroom_light_5
+    - light.bathroom_light_6
+    - light.bathroom_light_ambiance
+
+    
+bathroomlight1:
+  name: Bathroom Light 1
+  entities:
+    - light.bathroom_light_1
+    - light.bathroom_light_2
+    - light.bathroom_light_3
+  icon: mdi:lightbulb
+    
+bathroomlight2:
+  name: Bathroom Light 2
+  entities:
+    - light.bathroom_light_4
+    - light.bathroom_light_5
+    - light.bathroom_light_6
+  icon: mdi:lightbulb

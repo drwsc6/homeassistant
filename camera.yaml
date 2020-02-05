@@ -1,0 +1,14 @@
+ - platform: generic
+   name: side driveway
+   stream_source: rtsp://admin:2014Fordf250@192.168.1.70:554
+   still_image_url: https://casadedenver.com/api/hassio_ingress/17TzGQY3jhIF04cJYU-Ya1LhDBnOJGO51ExIvXs2HKo/picture/1/current/
+   username: 'admin'
+   password: '2014Fordf250'
+   verify_ssl: false
+ - platform: generic
+   name: front door
+   stream_source: rtsp://admin:2014Fordf250@192.168.1.71:554
+   still_image_url: https://casadedenver.com/api/hassio_ingress/17TzGQY3jhIF04cJYU-Ya1LhDBnOJGO51ExIvXs2HKo/picture/2/current/
+   verify_ssl: false
+   username: 'admin'
+   password: '2014Fordf250'

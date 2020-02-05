@@ -1,0 +1,197 @@
+      name: Demo Floorplan
+      image: /local/custom_ui/floorplan/floorplan.svg
+      stylesheet: /local/custom_ui/floorplan/floorplan.css
+      
+      # These options are optional
+     # warnings:                  # enable warnings (to find out why things might ot be working correctly)
+      pan_zoom:                  # enable experimental panning / zooming
+      # hide_app_toolbar:          # hide the application toolbar (when used as a custom panel)
+      # date_format: DD-MMM-YYYY   # Date format to use in hover-over text
+      
+      last_motion_entity: sensor.template_last_motion
+      last_motion_class: last-motion
+
+      groups:
+
+        - name: Sensors
+          entities:
+             -  sensor.dark_sky_temperature
+             -  sensor.ecobee_temperature
+          #text_template: '${entity.state ? entity.state : "unknown"}'
+          # An example of rounding up a number, i.e. a temperature of 90.1 becomes 91
+          text_template: '${entity.state ? Math.ceil(entity.state) : "undefined"}'  
+          class_template: '
+            var temp = parseFloat(entity.state.replace("°", ""));
+            if (temp < 10)
+              return "temp-low";
+            else if (temp < 30)
+              return "temp-medium";
+            else
+              return "temp-high";
+            '
+
+        - name: Lights
+          entities:
+             - light.garage_light
+             - light.workshop_light
+             - light.kitchen_light
+             - light.office_light
+             - light.master_bedroom_light
+             - light.underwater_pool_light
+             - light.edge_pool_light
+             - light.hallway_light
+          states:
+            - state: 'on'
+              class: 'light-on'
+            - state: 'off'
+              class: 'light-off'
+          action:
+            domain: homeassistant   # This optional parameter allows you to use other services such as homeassistant.toggle like here.
+            service: toggle
+
+#        - name: Switches
+#          entities:
+#             - switch.garage_light_switch
+#             - switch.workshop_light_switch
+#             - switch.kitchen_light_switch
+#             - switch.pool_light_switch
+#             - switch.office_light_switch
+#             - switch.office_hallway_light_switch
+#          states:
+#            - state: 'off'
+#              class: 'switch-off'
+#            - state: 'on'
+#              class: 'switch-on'
+#          action:
+#            domain: homeassistant   # This optional parameter allows you to use other services such as homeassistant.toggle like here.
+ #           service: toggle
+
+#        - name: NVR
+#          entities:
+#             - binary_sensor.blue_iris_nvr
+#          text_template: '${(entity.state === "on") ? "online" : "offline"}'
+#          states:
+#            - state: 'off'
+#              class: 'danger-text'
+#            - state: 'on'
+#              class: 'success-text'
+
+#        - name: Alarm Panel
+#          entities:
+#             - alarm_control_panel.alarm
+#          states:
+#            - state: 'armed_away'
+#              class: 'alarm-armed'
+#            - state: 'armed_home'
+#              class: 'alarm-armed'
+#            - state: 'disarmed'
+#              class: 'alarm-disarmed'
+
+        - name: Binary sensors
+          entities:
+            - binary_sensor.office_pir
+            - binary_sensor.kitchen_pir
+            - binary_sensor.lil_bee_occupancy
+            - binary_sensor.ecobee_occupancy
+            - binary_sensor.garage_pir
+            - binary_sensor.workshop_pir
+            - binary_sensor.master_bedroom_pir
+            - binary_sensor.hallway_pir
+            - binary_sensor.samanthas_pir
+            - binary_sensor.julies_pir
+          states:
+            - state: 'off'
+              class: 'light_off'
+            - state: 'on'
+              class: 'info-background'
+          state_transitions:
+            - name: On to off
+              from_state: 'on'
+              to_state: 'off'
+              duration: 10
+              
+        - name: Doors
+          entities:
+            - cover.garage_door
+            - cover.workshop_door
+            - binary_sensor.garage_patio_door
+            - binary_sensor.front_door
+            - binary_sensor.patio_door
+            - binary_sensor.front_garage_door
+            - binary_sensor.master_bath_door
+          states:
+            - state: 'open'
+              class: 'warning-background'
+            - state: 'closed'
+              class: 'info-background'
+            - state: 'on'
+              class: 'warning-background'
+            - state: 'off'
+              class: 'info-background'
+          action:
+            - domain: cover   # This optional parameter allows you to use other services such as homeassistant.toggle like here.
+              service: close_cover
+            - domain: cover   # This optional parameter allows you to use other services such as homeassistant.toggle like here.
+              service: open_cover
+        - name: windows
+          entities:
+            - binary_sensor.garage_window
+            - binary_sensor.office_window
+            - binary_sensor.east_kitchen_window
+            - binary_sensor.south_kitchen_window
+            - binary_sensor.nook_window
+          states:
+            - state: 'off'
+              class: 'info-background'
+            - state: 'on'
+              class: 'warning-background'
+            - state: 'open'
+              class: 'warning-background'
+            - state: 'closed'
+              class: 'info-background'
+        - name: humans
+          entities:
+            - person.mike
+            - person.kristina
+          states:
+            - state: 'home'
+              class: 'warning-background'
+            - state: 'away'
+              class: 'info-background'
+        - name: Media
+          entities:
+            -  media_player.casaderock_zone_2
+            -  media_player.casaderock
+          states:
+            - state: 'off'
+              class: 'squeezebox-off'
+            - state: 'idle'
+              class: 'squeezebox-off'
+            - state: 'paused'
+              class: 'squeezebox-off'
+            - state: 'playing'
+              class: 'squeezebox-on'
+        - name: Weather
+          entities:
+             -  weather.ecobee
+             -  climate.ecobee
+          text_template: '${entity.attributes.temperature ? entity.attributes.temperature : "undefined"}'
+              
+#        - name: thermostat_temp
+#          entities:
+#            - climate.downstairs
+#            - climate.upstairs
+#          text_template: '${entity.attributes.current_temperature ? entity.attributes.current_temperature : "undefined"}'
+#
+# The above text_template uses extended attributes from the climate.* objects to get current temperature.
+
+        - name: environment
+          entities:
+            - sensor.kitchen_temperature
+            - sensor.office_temperature
+            - sensor.lil_bee_temperature
+            - sensor.ecobee_temperature
+            - sensor.garage_temperature
+            - sensor.workshop_temperature
+            - sensor.master_bedroom_temperature
+          text_template: '${entity.state ? entity.state: "undefined"}'
